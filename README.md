@@ -1,73 +1,105 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Serverless Framework with NestJS and TypeScript Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This template provides a comprehensive boilerplate for deploying serverless applications to AWS Lambda and API Gateway. It employs NestJS for robust backend functionality and TypeScript for type safety and improved code quality.
 
-## Description
+## Why Use This Boilerplate?
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Forking this repository is an option, but for an even smoother setup, leverage the Serverless Framework's install command. This template comes pre-configured with linting, type-checking, and more, making it the perfect starting point for Serverless-NestJS-TypeScript projects.
 
-## Installation
+## Quick Start
+
+### Installation
+
+First, download this boilerplate to your local environment using the following command:
 
 ```bash
-$ npm install
+serverless install -u https://github.com/46ki75/serverless-aws-node-typescript-nestjs -n your-project-name
 ```
 
-## Running the app
+Note: Replace `your-project-name` with your desired project name.
+
+### Dependency Installation
+
+Navigate to the root folder of your new project and run:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd your-project-name  # Replace with your chosen project name
+npm install
 ```
 
-## Test
+Before deploying, make sure to compile the TypeScript files:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run build
 ```
 
-## Support
+### Serverless Framework Setup
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Initialize the Serverless Framework with:
 
-## Stay in touch
+```bash
+serverless
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+During this process, you'll be prompted to deploy your project. Ensure that you've run `npm run build` beforehand to avoid deployment issues.
 
-## License
+### Running Locally
 
-Nest is [MIT licensed](LICENSE).
+To start the NestJS server locally:
+
+```bash
+npm start
+```
+
+This will compile TypeScript files and then launch the server.
+
+### Development with Live Reloading
+
+For a development environment with live reloading, use:
+
+```bash
+npm run start:dev
+```
+
+This command will start the server and watch for file changes, reloading automatically when modifications are detected. This is based on the default configuration set up by the Nest CLI when you create a new NestJS project.
+
+## File Descriptions
+
+| File                | Description                                                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `src/main.ts`       | Defines and exports the root handler for the NestJS application. It is minimally configured to allow flexibility.           |
+| `src/app.module.ts` | This is where your application modules and providers are defined.                                                           |
+| `src/lambda.ts`     | Exports the handler to be passed to AWS Lambda. This handler wraps your NestJS application for serverless deployment.       |
+| `serverless.yml`    | Configuration for the Serverless Framework. It specifies settings for deploying your service to AWS Lambda and API Gateway. |
+
+### Alternative Setup with Nest CLI
+
+You can also start by generating a project skeleton with Nest CLI and then copying the `lambda.ts` and `serverless.yml` files from this template. Here's how to do it:
+
+#### Install Nest CLI
+
+If you haven't installed Nest CLI yet, you can install it globally with:
+
+```bash
+npm install -g @nestjs/cli
+```
+
+#### Create a New NestJS Project
+
+Generate a new NestJS project by running:
+
+```bash
+nest new your-project-name
+```
+
+Replace `your-project-name` with your desired project name.
+
+#### Copy Required Files
+
+After creating your project, navigate to the project directory and replace or add the `lambda.ts` and `serverless.yml` files from this template.
+
+#### Final Steps
+
+Once the files are copied, follow the rest of the Quick Start guide in this README to complete your setup.
